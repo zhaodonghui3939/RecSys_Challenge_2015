@@ -6,6 +6,7 @@ package org.recsys.challenge
 object RecSysMain {
   def main(args: Array[String]) {
     println(1)
+    
   }
 
 }

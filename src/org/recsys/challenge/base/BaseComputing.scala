@@ -1,6 +1,5 @@
 package org.recsys.challenge.base
 
-import org.apache.spark.ml.Model
 import org.apache.spark.mllib.linalg.{Vectors,Vector}
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.rdd.RDD

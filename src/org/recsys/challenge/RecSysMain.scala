@@ -19,10 +19,10 @@ object RecSysMain {
 
     //开始预测
     val predictFeatures = fe.getPredictFeatures.cache()
-    val predictResults = Predict.predictRF(predictFeatures,model,0.2);
+    val predictResults = Predict.predictRF(predictFeatures,model,0.22);
 
     //结果输出
-    predictResults.map(_._1).map{
+    val output = predictResults.map(_._1).map{
       case sessionItem => {
         val session = sessionItem.split("_")(0)
         val item = sessionItem.split("_")(1)
@@ -32,7 +32,8 @@ object RecSysMain {
       case (session,items) => {
         session+";"+items
       }
-    }
+    }.cache()
+
   }
 
 }

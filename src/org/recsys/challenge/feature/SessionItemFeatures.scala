@@ -3,7 +3,7 @@ package org.recsys.challenge.feature
 import java.text.SimpleDateFormat
 import org.apache.spark.rdd.RDD
 import org.recsys.challenge.base.ClickRecord
-import java.util.{Calendar,Date}
+import java.util.{Calendar}
 
 object SessionItemFeatures extends Serializable{
 

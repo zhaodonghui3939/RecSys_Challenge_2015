@@ -2,7 +2,7 @@ package org.recsys.challenge
 
 import org.apache.spark.SparkContext
 import org.recsys.challenge.base.BaseComputing
-import org.recsys.challenge.feature.{ItemFeatures, SessionFeatures}
+import org.recsys.challenge.feature.{SessionItemFeatures, ItemFeatures, SessionFeatures}
 
 object RecSysMain {
   def main(args: Array[String]) {
@@ -19,6 +19,9 @@ object RecSysMain {
     val itemBuySet = BaseComputing.getBuyItemData(buys)
 
     val itemFeature = ItemFeatures.getItemFeatures(itemClickSet,itemBuySet)
+
+    val sessionItemClickSet = BaseComputing.getSessionItemData(clicks)
+    val sessionItemFeatures = SessionItemFeatures.getSessionItemClickFeatures(sessionItemClickSet)
 
   }
 

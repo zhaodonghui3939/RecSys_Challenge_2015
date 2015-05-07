@@ -22,7 +22,7 @@ object SessionFeatures extends Serializable{
           val records_sorted = records.map(line => stringToLong(line.time)).sorted
           (records_sorted(records_sorted.length - 1) - records_sorted(0))
         }
-        val click_time = click_sum.toDouble / time_inteval         //点击总次数除以时间间隔
+        val click_time = time_inteval / click_sum.toDouble         //点击总次数除以时间间隔
         val click_item = click_sum.toDouble / item_num             //点击总次数除以商品种类数
         val category_num = records.map(_.category).distinct.length //种类的总数目
         val promotion = records.map(line => (line.itemId,line.category)).distinct.map(_._2).filter(_.equals("S")).length //促销的商品数目

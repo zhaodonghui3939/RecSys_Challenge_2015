@@ -60,8 +60,8 @@ object BaseComputing extends Serializable{
     }
   }
 
-  def getSessionItemData(buys:RDD[String]) = {
-    buys.map{
+  def getSessionItemData(clicks:RDD[String]) = {
+    clicks.map{
       case record => {
         val ss = record.split(",")
         val key = ss(0)+"_"+ss(2)

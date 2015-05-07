@@ -5,9 +5,9 @@ import org.apache.spark.rdd.RDD
 //随机森林用regression的方法
 class RF(data:RDD[LabeledPoint]) extends Serializable{
   def run = {
-    val categoricalFeaturesInfo = Map[Int, Int]()
+    val categoricalFeaturesInfo = Map[Int, Int]((3,16),(4,13),(5,32),(6,8))
     val numTrees = 100 // Use more in practice.
-    val featureSubsetStrategy = "auto" // Let the algorithm choose.
+    val featureSubsetStrategy = "onethird" // Let the algorithm choose.
     val impurity = "variance"
     val maxDepth = 6
     val maxBins = 32

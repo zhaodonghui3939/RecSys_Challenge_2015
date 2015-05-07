@@ -73,4 +73,21 @@ object BaseComputing extends Serializable{
       }
     }
   }
+
+  def joinFeatures(sessionItemFeatures:RDD[(String,Array[Double])],
+                    sessionFeatures:RDD[(String,Array[Double])],
+                    itemFeatures:RDD[(String,Array[Double])]): RDD[(String,Array[Double])] = {
+
+    val item_features = itemFeatures.collect().toMap
+    sessionItemFeatures.map(line => (line._1,line._2 ++ item_features(line._1.split("_")(1)))).map{
+      case (sessionItem,features) => {
+        val session = sessionItem.split("_")(0)
+        (session,(sessionItem,features))
+      }
+    }.join(sessionFeatures).map{
+      case(session,((sessionItem,features),sessionfeatures)) => {
+        (sessionItem,features++sessionfeatures)
+      }
+    }
+  }
 }

@@ -42,7 +42,6 @@ object SessionItemFeatures extends Serializable{
         (session_item,features)
       }
     }
-
   }
 
 }

@@ -14,7 +14,7 @@ object RecSysMain {
     //特征工程和采样训练
     val fe = new FeatureEngineering(clicks,buys,test)
     val trainingFeatures = fe.getTraningFeatures.cache()
-    val sample = SampleBase.globalSample(trainingFeatures,8).cache()
+    val sample = SampleBase.globalSample(trainingFeatures,2).cache()
     val model = Training.rf(sample)
 
     //开始预测
@@ -33,7 +33,6 @@ object RecSysMain {
         session+";"+items
       }
     }.cache()
-
   }
 
 }

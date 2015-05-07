@@ -6,7 +6,7 @@ import org.apache.spark.rdd.RDD
 class RF(data:RDD[LabeledPoint]) extends Serializable{
   def run = {
     val categoricalFeaturesInfo = Map[Int, Int]()
-    val numTrees = 200 // Use more in practice.
+    val numTrees = 100 // Use more in practice.
     val featureSubsetStrategy = "auto" // Let the algorithm choose.
     val impurity = "variance"
     val maxDepth = 6

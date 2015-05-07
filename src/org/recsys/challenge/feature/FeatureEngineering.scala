@@ -3,10 +3,12 @@ package org.recsys.challenge.feature
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.rdd.RDD
 import org.recsys.challenge.base.BaseComputing
-import org.apache.spark.mllib.linalg.Vector
 
 class FeatureEngineering(clicks:RDD[String],buys:RDD[String],test:RDD[String]) {
-  private val itemFeature = ItemFeatures.getItemFeatures(BaseComputing.getClickItemData(clicks),BaseComputing.getBuyItemData(buys)).cache()
+  private val itemFeature = ItemFeatures.getItemFeatures(
+    BaseComputing.getClickItemData(clicks).union(BaseComputing.getClickItemData(test)),
+    BaseComputing.getBuyItemData(buys)).cache()
+
   //获得训练集的特征
   def getTraningFeatures:RDD[(String,LabeledPoint)] = {
     val sessionFeatures = SessionFeatures.getSessionFeatures(BaseComputing.getClickSessionData(clicks))

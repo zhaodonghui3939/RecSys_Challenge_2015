@@ -19,5 +19,4 @@ object Training {
   def svmlr(features:RDD[LabeledPoint]) = {
     new SVM(features).run
   }
-
 }

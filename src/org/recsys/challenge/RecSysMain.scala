@@ -13,14 +13,14 @@ object RecSysMain {
     val test = sc.textFile("/data/recsys2015/yoochoose-test.dat")
     //特征工程和采样训练
     val fe = new FeatureEngineering(clicks,buys,test)
-    val trainingFeatures = fe.getTraningFeatures.cache()
+    val trainingFeatures = fe.getTraningFeatures
     val predictFeatures = fe.getPredictFeatures.cache()
 
     val sample = SampleBase.globalSample(trainingFeatures,1).cache()
     val model = Training.gbdt(sample)
 
     //线下测试准略率
-    val trainingResults = Predict.predictGBDT(trainingFeatures,model,0.55).cache()
+    val trainingResults = Predict.predictGBDT(trainingFeatures,model,0.55)
 
     //开始预测
 

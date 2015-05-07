@@ -1,7 +1,7 @@
 package org.recsys.challenge
 
 import org.apache.spark.SparkContext
-import org.recsys.challenge.Sample.SampleBase
+import org.recsys.challenge.sample.SampleBase
 import org.recsys.challenge.feature.{FeatureEngineering}
 import org.recsys.challenge.model.{Predict, Training}
 

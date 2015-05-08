@@ -10,7 +10,7 @@ object Test {
     println(formatter.parse(t))
     val cal=Calendar.getInstance()
     cal.setTime(formatter.parse(t))
-    println(cal.get(Calendar.YEAR))
+    println(cal.get(Calendar.HOUR_OF_DAY))
    // println(ss.replace("T"," "))
 //    val b = formatter.parse("2014-04-07 00:00:00")
 //    val s = formatter.parse("2014-04-08 09:05:08")

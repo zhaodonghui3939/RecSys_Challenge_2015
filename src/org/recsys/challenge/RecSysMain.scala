@@ -16,15 +16,19 @@ object RecSysMain {
     val trainingFeatures = fe.getTraningFeatures
     val predictFeatures = fe.getPredictFeatures.cache()
 
-    val sample = SampleBase.globalSample(trainingFeatures,1).cache()
-    val model = Training.gbdt(sample)
+    trainingFeatures.cache()
+    val sample = SampleBase.globalSample(trainingFeatures,6).cache()
+    sample.count()
+    trainingFeatures.unpersist()
+
+    val model = Training.rf(sample)
 
     //线下测试准略率
-    val trainingResults = Predict.predictGBDT(trainingFeatures,model,0.55)
+    val trainingResults = Predict.predictRF(trainingFeatures,model,0.35)
 
     //开始预测
 
-    val predictResults = Predict.predictGBDT(predictFeatures,model,0.55);
+    val predictResults = Predict.predictRF(predictFeatures,model,0.25);
     //结果输出
     val output = predictResults.map(_._1).map{
       case sessionItem => {
@@ -38,7 +42,7 @@ object RecSysMain {
       }
     }.cache()
 
-    output.saveAsTextFile("/data/recsys2015/0507/rf")
+    output.saveAsTextFile("/data/recsys2015/0507/gbrt")
   }
 
 }

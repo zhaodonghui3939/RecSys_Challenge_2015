@@ -37,8 +37,12 @@ object SessionItemFeatures extends Serializable{
         }
         val month = stringToDate(records(0).time).get(Calendar.MONTH) + 1
         val month_day = stringToDate(records(0).time).get(Calendar.DAY_OF_MONTH)
+        val (hour_begin,hour_end) = {
+          val records_hour_sorted = records.map(line => stringToDate(line.time).get(Calendar.HOUR_OF_DAY)).sorted
+          (records_hour_sorted(0),records_hour_sorted(records_hour_sorted.length - 1))
+        }
         val week_day = stringToDate(records(0).time).get(Calendar.DAY_OF_WEEK)
-        val features = Array(click_sum,time_inteval,click_time,category_flag,month,month_day,week_day)
+        val features = Array(click_sum,time_inteval,click_time,category_flag,month,month_day,week_day,hour_begin,hour_end)
         (session_item,features)
       }
     }
